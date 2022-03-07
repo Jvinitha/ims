@@ -113,7 +113,7 @@ color:red;
                   }else{
                     //window.location = "<?php echo site_url('inventory/register');?>";
                           
-                     $scope.error = "Incorrect email or password !";
+                     $scope.error = "Incorrect email or password";
                   }
                       });
         
