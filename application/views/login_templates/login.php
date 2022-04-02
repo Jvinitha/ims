@@ -83,11 +83,8 @@ color:red;
 <script>
           
           var app = angular.module('myApp', []);
-            app.controller('myCtrl', function($scope, $http) {
-        
-                
+            app.controller('myCtrl', function($scope, $http) {  
                     $scope.loginitem= function (myform){
-                      
                        $scope.error ="";
                         if(myform.$invalid){
                             
@@ -104,16 +101,21 @@ color:red;
                   }
                 }).then(function(response){
                  var status = response.data.status;
+                 var usertype = response.data.usertype;
                   if(status == "sucess"){
             
+
+                    if(usertype == 0)
                    window.location = "<?php echo site_url('dashboard_cntrl/index');?>";
+                   else
+                   window.location = "<?php echo site_url('store/store_category');?>";
         
                  // alert("login sucess");
                
                   }else{
-                    //window.location = "<?php echo site_url('inventory/register');?>";
+                   
                           
-                     $scope.error = "Incorrect email or password";
+                     //$scope.error = "Incorrect email or password";
                   }
                       });
         

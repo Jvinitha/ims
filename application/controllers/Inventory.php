@@ -32,12 +32,14 @@ class Inventory extends CI_Controller {
                 $firstname = $logdisplay->firstname;
                 $email = $logdisplay->email;
                 $id = $logdisplay->id;
+                $usertype = $logdisplay->usertype;
                 $the_session = array("id" => "$id","firstname" => "$firstname","email" => "$email");
                 $this->session->set_userdata($the_session); //set session values
-                echo json_encode(array('status'=>"sucess"));
+                echo json_encode(array('status'=>"sucess","usertype"=>$usertype));
                // $this->load->view('login_templates/dashboard');
             }else{
                     echo json_encode(array('status'=>"invalid"));
+                   
                 }
             }
         }
@@ -79,7 +81,7 @@ class Inventory extends CI_Controller {
             }
                 
         }
-        
-        
+       
+
 
     }

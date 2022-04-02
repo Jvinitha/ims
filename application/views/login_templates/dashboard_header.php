@@ -14,6 +14,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="<?php echo base_url('assets/css/all.min.css');?>" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -115,6 +116,8 @@
                         <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
+                        <a class="collapse-item" href="<?php echo site_url('dashboard_cntrl/categoryload');?>">Category</a>
+                        <a class="collapse-item" href="<?php echo site_url('dashboard_cntrl/categorytable');?>">Category_table</a>
                         <a class="collapse-item" href="404.html">404 Page</a>
                         <a class="collapse-item" href="blank.html">Blank Page</a>
                     </div>
@@ -127,10 +130,15 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo site_url('dashboard_cntrl/form');?>">
+                    <i class="fa-brands fa-wpforms"></i>
+                    <span>Add E-product</span></a>
+            </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="<?php echo site_url('dashboard_cntrl/product');?>">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
             </li>

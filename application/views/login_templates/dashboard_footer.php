@@ -37,11 +37,11 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?php echo base_url('assets/js/sb-admin-2.min.js');?>"></script>
-    <script src="<?php echo base_url('assets/js/Chart.min.js');?>">></script>
+    <script src="<?php echo base_url('assets/js/Chart.min.js');?>"></script>
 
     <!-- Page level custom scripts -->
     <script src="<?php echo base_url('assets/js/chart-area-demo.js');?>"></script>
-    <script src="<?php echo base_url('assets/js/chart-pie-demo.js');?>">></script>
+    <script src="<?php echo base_url('assets/js/chart-pie-demo.js');?>"></script>
 
 
 </body>
