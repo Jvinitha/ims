@@ -173,5 +173,9 @@ class Inventory_model extends CI_Model {
             
                                         $query = $this->db->get_where('product', array('id' => $id));
                                         return $query->row();
-                                        }       
+                                        }   
+                                        public function detail_cart($id){           
+                                            $query = $this->db->get_where('product', array('id' => $id));
+                                            return $query->row_array();
+                                            }        
     }

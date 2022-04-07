@@ -384,6 +384,7 @@ section {
       <?php }else{ ?>
       <li><a href="<?php echo site_url('dashboard_cntrl/logout');?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       <?php } ?>
+      <li><a href="#" id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">3</span></a></li>
     </ul>   
         </div>
       </nav>
@@ -432,7 +433,7 @@ section {
                            <i class="fa fa-shopping-cart"></i> Buy Now
                            </a>
                            <?php }else{ ?>
-                            <a class="btn-theme btn buy-btn" tabindex="0" href="<?php echo site_url('store/location');?>">
+                            <a class="btn-theme btn buy-btn" tabindex="0" href="<?php echo site_url('store/cart_details/'.$mynotes->id);?>">
                         
                            <i class="fa fa-shopping-cart"></i> Buy Now
                           </a>

@@ -7,6 +7,7 @@ class Store extends CI_Controller {
                 $this->load->model('Inventory_model');
                 $this->load->helper(array('form', 'url'));
                 $this->load->library('form_validation');
+                $this->load->library('cart');
         }
         public function index(){ 
             $this->load->view('login_templates/store_header');
@@ -34,10 +35,82 @@ class Store extends CI_Controller {
             $this->load->view('login_templates/view_detail',$data);
       
         }
-        public function location(){
-            $this->load->view('login_templates/address');
-           
+        public function cart_details(){
+            $id = $this->uri->segment(3);
+            $data = $this->Inventory_model->detail_cart($id);
+            $productId =$data['id'];
+            $title =$data['title'];
+            $image =$data['image'];
+            $price =$data['price'];
+            $description =$data['description'];
+            $note = array(
+                'id'      => $productId,
+                'qty'     => 1,
+                'name'    =>  $title,
+                'image'   =>  $image,
+                'price'   =>  $price,
+                'description' =>  $description
+        );
+             $this->cart->insert($note);
+             redirect(site_url('store/cart_display'));
         }
+        public function cart_display(){
+            //$foo = $this->cart->contents();
+            //var_dump($foo);exit;
+            $data['myvalue']=$this->cart_info();
+           $this->load->view('login_templates/address',$data);
+        }
+       public function cart_update(){
+        $Item = file_get_contents("php://input");
+        $request = json_decode($Item);
+        $updatetype= $request->updatetype;
+        $rowid= $request->row_id;
+        $qty= $request->qty;
+    
+            $mydata = array(
+                'rowid' => $rowid,
+                'qty'   => $qty
+                         );
+        $this->cart->update($mydata);
+            //$this->load->view('login_templates/address');
+           $myval=$this->cart_info();
+            echo $myval;
+        
+         }
+         public function cart_info(){
+             $data = $this->cart->contents();
+             $product_sum = 0;
+             $shipping_sum = 0;
+             
+             foreach($data as $tab){
+                $product_sum = $product_sum+$tab['subtotal']; 
+                $shipping_sum = $shipping_sum+(20* $tab['qty']);
+                $info[] = array('id' => $tab['id'],
+                'title' => $tab['name'],
+                'image' => $tab['image'],
+                'price' => $tab['price'],
+                'qty'     => $tab['qty'],
+                'description' => $tab['description'],
+                'rowid' => $tab['rowid'],
+                'subtotal' => $tab['subtotal']);
+
+                
+             }
+           
+             
+             //var_dump( $info);
+             $total_shipping =  $shipping_sum+30;
+             $total= $product_sum+ $total_shipping;
+             $myinfo= array('product_total' =>$product_sum,'shipping' =>$total_shipping,'total' => $total,'product_info' =>$info);
+            
+          
+            //var_dump( $myinfo);exit;
+           $foo =  json_encode($myinfo);
+           return $foo;
+          
+
+         }
+
 
 
 }
