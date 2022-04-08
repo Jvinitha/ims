@@ -58,7 +58,9 @@ class Store extends CI_Controller {
             //$foo = $this->cart->contents();
             //var_dump($foo);exit;
             $data['myvalue']=$this->cart_info();
+            $this->load->view('login_templates/store_header');
            $this->load->view('login_templates/address',$data);
+           $this->load->view('login_templates/store_footer');
         }
        public function cart_update(){
         $Item = file_get_contents("php://input");
@@ -87,7 +89,7 @@ class Store extends CI_Controller {
                 $shipping_sum = $shipping_sum+(20* $tab['qty']);
                 $info[] = array('id' => $tab['id'],
                 'title' => $tab['name'],
-                'image' => $tab['image'],
+                'image' => $tab['image'],   
                 'price' => $tab['price'],
                 'qty'     => $tab['qty'],
                 'description' => $tab['description'],
@@ -107,9 +109,12 @@ class Store extends CI_Controller {
             //var_dump( $myinfo);exit;
            $foo =  json_encode($myinfo);
            return $foo;
-          
-
          }
+         public function cart_location(){
+           $this->load->view('login_templates/store_header');
+           $this->load->view('login_templates/location_view');
+           $this->load->view('login_templates/store_footer');
+        }
 
 
 
