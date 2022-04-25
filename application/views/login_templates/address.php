@@ -168,12 +168,12 @@
 						 						<div class="row">
 							 						<div class="col-md-5 product-name">
 							 							<div class="product-name">
-								 							<a href="<?php echo site_url('store/detail_page/');?>{{ x.id}}">{{ x.title }}</a>
+								 							<a href="<?php echo site_url('store/detail_page/');?>{{ x.id}}"><h4>{{ x.title }}</h4></a>
 								 							
 									 					</div>
 							 						</div>
 							 						<div class="col-md-4 quantity">
-							 							<label for="quantity">Quantity:</label>
+							 							<label for="quantity"><h4>Quantity:</h4></label>
 							 							<input ng-blur="updatecart(x.rowid,$index)" ng-model="qty[$index]" id="qty" type="number" name="qty[$index]" ng-value="{{x.qty}}" class="form-control quantity-input">
 							 						</div>
 							 						<div class="col-md-3 price">
@@ -196,7 +196,9 @@
 			 					<div class="summary-item"><span class="text">Subtotal</span><span class="price">Rs.{{product_total}}</span></div>
 			 					<div class="summary-item"><span class="text">Shipping</span><span class="price">Rs.{{shipping}}</span></div>
 			 					<div class="summary-item"><span class="text">Total</span><span class="price">Rs.{{total}}</span></div>
-			 					<button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
+			 					<a href="<?php echo site_url('store/cart_view/');?>"><button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button></a>
+								 <a href="<?php echo site_url('store/edit_cartaddress/');?>1"><button type="button" class="btn btn-primary btn-lg btn-block">edit</button></a>
+
 				 			</div>
 			 			</div>
 		 			</div> 

@@ -110,12 +110,55 @@ class Store extends CI_Controller {
            $foo =  json_encode($myinfo);
            return $foo;
          }
+         public function cart_view(){
+            $this->load->view('login_templates/store_header');
+            $this->load->view('login_templates/location_view');
+            $this->load->view('login_templates/store_footer');
+         }
          public function cart_location(){
-           $this->load->view('login_templates/store_header');
-           $this->load->view('login_templates/location_view');
-           $this->load->view('login_templates/store_footer');
+            $user_id = $this -> session -> userdata('id');
+
+            $userid = $user_id;
+            $firstname = $_POST['firstname'];
+            $lastname = $_POST['lastname'];
+            $address = $_POST['address'];
+            $phone = $_POST['phone'];
+            $country = $_POST['country'];
+            $pincode = $_POST['zipcode'];
+            $city = $_POST['city'];
+            $state = $_POST['state'];
+            $myinsert = $this->Inventory_model->location_insert($userid,$firstname,$lastname,$address,$phone,$country,$pincode,$city,$state);
+            redirect(site_url('store/cart_display'));
+           
         }
-
-
-
+        public function edit_cartaddress(){
+            $id = $this->uri->segment(3);
+            $data['notes'] = $this->Inventory_model->edit_address($id);
+            $this->load->view('login_templates/store_header');
+            $this->load->view('login_templates/location_edit',$data);
+            $this->load->view('login_templates/store_footer');
+        }
+        public function update_cartaddress($id){
+            $user_id = $this -> session -> userdata('id');
+            $userid = $user_id;
+            $firstname = $_POST['firstname'];
+            $lastname = $_POST['lastname'];
+            $address = $_POST['address'];
+            $phone = $_POST['phone'];
+            $country = $_POST['country'];
+            $pincode = $_POST['zipcode'];
+            $city = $_POST['city'];
+            $state = $_POST['state'];
+        $myupdate = $this->Inventory_model->location_update($id,$userid,$firstname,$lastname,$address,$phone,$country,$pincode,$city,$state);
+        redirect(site_url('store/review_cart'));
+    }
+    public function review_cart(){
+        $data['myvalue']=$this->cart_info();
+        $data['myaddress'] = $this->Inventory_model->address_display();
+       // var_dump($data);exit;
+        $this->load->view('login_templates/store_header');
+       $this->load->view('login_templates/cart_reviewpg',$data);
+       $this->load->view('login_templates/store_footer');   
+    }
+  
 }

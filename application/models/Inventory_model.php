@@ -177,5 +177,52 @@ class Inventory_model extends CI_Model {
                                         public function detail_cart($id){           
                                             $query = $this->db->get_where('product', array('id' => $id));
                                             return $query->row_array();
-                                            }        
+                                            }    
+                                            
+        public function location_insert($userid,$firstname,$lastname,$address,$phone,$country,$pincode,$city,$state){
+            $data = array(//storing one set of array
+                'user_id' => $userid,
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+                'address' => $address,
+                'phone_number' => $phone,
+                'country' => $country,
+                'pincode' => $pincode,
+                'city' => $city,
+                'state' => $state);
+        //var_dump($data);exit;
+        $this->db->insert('address', $data);
+        }    
+        public function edit_address($id){
+            $query = $this->db->get_where('address', array('id' => $id));
+            return $query->row();
+            }
+            public function location_update($id,$userid,$firstname,$lastname,$address,$phone,$country,$pincode,$city,$state){
+                //echo $id;exit;
+                $data = array(
+                    'user_id' => $userid,
+                    'firstname' => $firstname,
+                    'lastname' => $lastname,
+                    'address' => $address,
+                    'phone_number' => $phone,
+                    'country' => $country,
+                    'pincode' => $pincode,
+                    'city' => $city,
+                    'state' => $state,
+                );
+                    $this->db->where('id', $id);
+                     $this->db->update('address', $data);
+                
+                }
+                public function address_display(){
+                    $this->db->select('*');
+                    $this->db->from('address');
+                    $this->db->order_by("id", "DESC");
+                    $query = $this->db->get();
+                    $row = $query->row();
+                    return $row;
+                    }
+                    
+
+
     }
